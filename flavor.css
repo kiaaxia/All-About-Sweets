@@ -1,0 +1,228 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f3e7da, #e6d3b3);
+  color: #333;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #6b4c3b;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.navbar {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #6b4c3b;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #c17a3f;
+}
+
+.order-btn {
+  background: #d4a373;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.order-btn:hover {
+  background: #c17a3f;
+  transform: scale(1.05);
+}
+.login {
+  color: #6b4c3b;
+}
+
+
+.flavors-section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.flavors-section h2 {
+  font-size: 2rem;
+  color: #b85c38;
+  margin-bottom: 10px;
+}
+
+.flavors-section p.subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.flavors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.flavor-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.flavor-card:hover {
+  transform: translateY(-5px);
+}
+
+.flavor-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.flavor-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.flavor-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #b85c38;
+  margin-bottom: 10px;
+}
+
+.flavor-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.flavor-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+/* ===== FOOTER NAVBAR ===== */
+/* .cta-section {
+  background: linear-gradient(135deg, #8b4513, #c48a5a);
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.cta-section .cta-button {
+  background-color: #fff;
+  color: #ff7f32;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.cta-section .cta-button:hover {
+  background-color: #ffe0cc;
+  color: #b85c38;
+} */
+
+/* Footer section */
+footer {
+  background-color: #8b4513;
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+footer h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+footer p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+footer small {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ffe4c4;
+}

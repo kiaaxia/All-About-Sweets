@@ -1,0 +1,66 @@
+body {
+  background: linear-gradient(to right, #f3e7da, #e6d3b3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.container {
+  width: 350px;
+  background: #f3f1ee;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #8b4513;
+}
+
+.sub {
+  text-align: center;
+  margin-bottom: 20px;
+  color: gray;
+}
+
+input, textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #e6e4e1;
+}
+
+.password-box {
+  position: relative;
+}
+
+.password-box span {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #8b4513;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 15px;
+}

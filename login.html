@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Welcome Back</h2>
+      <p class="sub">Log in to place your order</p>
+
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" />
+
+        <div class="password-box">
+          <input type="password" id="password" placeholder="Password" />
+          <span onclick="togglePass()">👁️</span>
+        </div>
+
+        <p class="error" id="error"></p>
+        <a href="index.html">
+          <button type="submit">Log In</button>
+        </a>
+      </form>
+
+      <p class="switch">
+        Don't have an account? <a href="signup.html">Sign up</a>
+      </p>
+    </div>
+
+    <script>
+      const form = document.getElementById("loginForm");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const pass = document.getElementById("password").value;
+
+        if (!email || !pass) {
+          alert("All fields are required!");
+          return;
+        }
+
+        if (pass.length < 8) {
+          alert("Password must be at least 8 characters!");
+          return;
+        }
+
+        alert("Login successful!");
+          // 🔥 REDIRECT HERE
+      window.location.href = "index.html";
+      });
+
+      function togglePass() {
+        const pass = document.getElementById("password");
+        pass.type = pass.type === "password" ? "text" : "password";
+      }
+    </script>
+  </body>
+</html>

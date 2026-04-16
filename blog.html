@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Blog</title>
+  </head>
+  <header class="navbar">
+    <div class="logo">
+      <span>All About Sweets</span>
+    </div>
+    <input type="checkbox" id="menu-toggle" />
+
+    <label for="menu-toggle" class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav class="nav-menu">
+      <a href="index.html" class="active">Home</a>
+      <a href="flavors.html">Flavors</a>
+      <a href="index.html#story">Story</a>
+      <a href="blog.html">Blog</a>
+      <button class="order-btn">Order Now</button>
+      <a href="#" class="login">Login</a>
+    </nav>
+  </header>
+  <body>
+    <section class="reviews">
+      <h2>Customer Reviews</h2>
+
+      <div class="reviews-wrapper">
+        <div class="reviews-track">
+          <!-- ORIGINAL -->
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Super sarap ng tinapay! Fresh everyday!"</p>
+            <h4>- Maria</h4>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★☆</div>
+            <p>"Affordable and delicious. Babalik ako ulit!"</p>
+            <h4>- John</h4>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Best bakery in town, highly recommended!"</p>
+            <h4>- Angela</h4>
+          </div>
+
+          <!-- DUPLICATE (for seamless loop) -->
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Super sarap ng tinapay! Fresh everyday!"</p>
+            <h4>- Maria</h4>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★☆</div>
+            <p>"Affordable and delicious. Babalik ako ulit!"</p>
+            <h4>- John</h4>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Best bakery in town, highly recommended!"</p>
+            <h4>- Angela</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="add-review">
+      <h2>Leave a Review</h2>
+
+      <input type="text" id="name" placeholder="Your name" />
+      <textarea id="message" placeholder="Your review"></textarea>
+
+      <div class="rating-input">
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
+      </div>
+
+      <button onclick="addReview()">Submit</button>
+    </section>
+    <section id="faq" class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <p class="subtitle">Everything you need to know</p>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          How far in advance should I order a customized cake?
+        </div>
+        <div class="faq-answer">
+          We recommend placing your order at least 1–2 weeks in advance to
+          ensure availability and enough time for customization.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Do you offer delivery?</div>
+        <div class="faq-answer">
+          Yes, we offer delivery within Metro Manila. Delivery fees may vary
+          depending on location.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What payment methods do you accept?</div>
+        <div class="faq-answer">We accept cash and GCash only.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Can I customize the design of my cake?</div>
+        <div class="faq-answer">
+          Absolutely! You can share your preferred theme, colors, and design
+          ideas, and we’ll bring them to life.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How can I order a customized cake?</div>
+        <div class="faq-answer">
+          You can contact us through our social media page on Facebook (All
+          About Sweets), reach us via phone at 09274007078, or email us at
+          allaboutsweets@gmail.com
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How long do the products stay fresh?</div>
+        <div class="faq-answer">
+          Our cakes and pastries are best enjoyed within 3–5 days. Refrigeration
+          is recommended for longer freshness.
+        </div>
+      </div>
+    </section>
+    <section class="cta-section">
+      <h2>Ready to Order?</h2>
+      <p>Treat yourself or someone special to our delicious homemade sweets</p>
+      <button class="cta-button">Start Your Order</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <h3>All About Sweets</h3>
+      <p>Handcrafted with love since 2016</p>
+      <ul class="footer-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="flavors.html">Flavors</a></li>
+        <li><a href="index.html#story">Story</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="blog.html#faq">FAQ</a></li>
+      </ul>
+      <small>© 2026 All About Sweets. All rights reserved.</small>
+    </footer>
+    <script>
+      const questions = document.querySelectorAll(".faq-question");
+
+      questions.forEach((question) => {
+        question.addEventListener("click", () => {
+          const answer = question.nextElementSibling;
+          question.classList.toggle("active");
+          answer.classList.toggle("open");
+        });
+      });
+      let selectedRating = 0;
+
+      // ⭐ select stars
+      document.querySelectorAll(".rating-input span").forEach((star) => {
+        star.addEventListener("click", () => {
+          selectedRating = star.getAttribute("data-value");
+
+          document
+            .querySelectorAll(".rating-input span")
+            .forEach((s) => s.classList.remove("active"));
+
+          for (let i = 0; i < selectedRating; i++) {
+            document
+              .querySelectorAll(".rating-input span")
+              [i].classList.add("active");
+          }
+        });
+      });
+
+      // ➕ add review
+      function addReview() {
+        const name = document.getElementById("name").value;
+        const message = document.getElementById("message").value;
+
+        if (!name || !message || selectedRating == 0) {
+          alert("Please complete everything!");
+          return;
+        }
+
+        const stars =
+          "★".repeat(selectedRating) + "☆".repeat(5 - selectedRating);
+
+        const reviewHTML = `
+    <div class="review-card">
+      <div class="stars">${stars}</div>
+      <p>"${message}"</p>
+      <h4>- ${name}</h4>
+    </div>
+  `;
+
+        const track = document.querySelector(".reviews-track");
+
+        // add to both original + duplicate (for seamless loop)
+        track.insertAdjacentHTML("beforeend", reviewHTML);
+        track.insertAdjacentHTML("beforeend", reviewHTML);
+
+        // clear form
+        document.getElementById("name").value = "";
+        document.getElementById("message").value = "";
+        selectedRating = 0;
+
+        document
+          .querySelectorAll(".rating-input span")
+          .forEach((s) => s.classList.remove("active"));
+      }
+    </script>
+  </body>
+</html>
