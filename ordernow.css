@@ -186,3 +186,76 @@ h1 {
     font-size: 14px;
   }
 }
+
+
+/* nav bar */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #6b4c3b;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.navbar {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #6b4c3b;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #c17a3f;
+}
+
+.order-btn {
+  background: #d4a373;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.order-btn:hover {
+  background: #c17a3f;
+  transform: scale(1.05);
+}
+.login {
+  color: #6b4c3b;
+}
