@@ -39,6 +39,13 @@ body {
   z-index: 1000;
 }
 
+.profile-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .logo {
   font-weight: bold;
   font-size: 20px;
@@ -184,7 +191,7 @@ nav a:hover {
 } */
 
 /* Footer section */
-footer {
+/* footer {
   background-color: #8b4513;
   color: #fff;
   text-align: center;
@@ -225,4 +232,4 @@ footer small {
 
 .footer-links a:hover {
   color: #ffe4c4;
-}
+} */

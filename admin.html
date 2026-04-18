@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f3e7da;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #8b4513;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stats {
+      display: flex;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      width: 150px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background: #8b4513;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .done {
+      background: green;
+      color: white;
+    }
+
+    .delete {
+      background: red;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top">
+    <h1>Admin Dashboard</h1>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="card">
+      <h3 id="totalOrders">0</h3>
+      <p>Orders</p>
+    </div>
+
+    <div class="card">
+      <h3 id="totalRevenue">₱0</h3>
+      <p>Revenue</p>
+    </div>
+  </div>
+
+  <!-- ORDERS TABLE -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Item</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody id="ordersTable"></tbody>
+  </table>
+
+  <script>
+    //  PROTECT ADMIN
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || user.role !== "admin") {
+      alert("Access denied!");
+      window.location.href = "login.html";
+    }
+
+    // 🔥 SAMPLE ORDERS (simulate)
+    let orders = JSON.parse(localStorage.getItem("orders")) || [
+      { name: "Khate", item: "Yema Cake", total: 130, status: "Pending" },
+      { name: "Maki", item: "Dream Cake", total: 150, status: "Pending" }
+    ];
+
+    function renderOrders() {
+      const table = document.getElementById("ordersTable");
+      table.innerHTML = "";
+
+      let totalRevenue = 0;
+
+      orders.forEach((order, index) => {
+        totalRevenue += order.total;
+
+        table.innerHTML += `
+          <tr>
+            <td>${order.name}</td>
+            <td>${order.item}</td>
+            <td>₱${order.total}</td>
+            <td>${order.status}</td>
+            <td>
+              <button class="done" onclick="markDone(${index})">Done</button>
+              <button class="delete" onclick="deleteOrder(${index})">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      document.getElementById("totalOrders").textContent = orders.length;
+      document.getElementById("totalRevenue").textContent = "₱" + totalRevenue;
+
+      localStorage.setItem("orders", JSON.stringify(orders));
+    }
+
+    function markDone(index) {
+      orders[index].status = "Completed";
+      renderOrders();
+    }
+
+    function deleteOrder(index) {
+      orders.splice(index, 1);
+      renderOrders();
+    }
+
+    function logout() {
+      localStorage.removeItem("user");
+      window.location.href = "login.html";
+    }
+
+    renderOrders();
+  </script>
+
+</body>
+</html>

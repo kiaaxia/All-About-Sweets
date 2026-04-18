@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>All About Sweets</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="assets/AASlogo.png" type="image/x-icon">
   </head>
   <body>
     <header class="navbar">
@@ -20,14 +21,21 @@
 
       <nav class="nav-menu">
         <a href="#" class="active">Home</a>
-        <a href="flavors.html">Flavors</a>
         <a href="#story">Story</a>
         <a href="blog.html">Blog</a>
+        <a href="#faq">FAQs</a>
         <a href="ordernow.html"> 
         <button class="order-btn">Order Now</button>
         </a>
         
-        <a href="login.html" class="login">Login</a>
+        <a href="login.html" id="loginBtn" class="login">Login</a>
+
+      <img 
+        src="assets/user.png"
+        id="profileBtn"
+        class="profile-icon"
+        onclick="goToProfile()"
+        style="display: none;">
       </nav>
     </header>
 
@@ -203,6 +211,64 @@
       </div>
     </footer> -->
 
+        <section id="faq" class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <p class="subtitle">Everything you need to know</p>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          How far in advance should I order a customized cake?
+        </div>
+        <div class="faq-answer">
+          We recommend placing your order at least 1–2 weeks in advance to
+          ensure availability and enough time for customization.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Do you offer delivery?</div>
+        <div class="faq-answer">
+          Yes, we offer delivery within Metro Manila. Delivery fees may vary
+          depending on location.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What payment methods do you accept?</div>
+        <div class="faq-answer">We accept cash and GCash only.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Can I customize the design of my cake?</div>
+        <div class="faq-answer">
+          Absolutely! You can share your preferred theme, colors, and design
+          ideas, and we’ll bring them to life.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How can I order a customized cake?</div>
+        <div class="faq-answer">
+          You can contact us through our social media page on Facebook (All
+          About Sweets), reach us via phone at 09274007078, or email us at
+          allaboutsweets@gmail.com
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How long do the products stay fresh?</div>
+        <div class="faq-answer">
+          Our cakes and pastries are best enjoyed within 3–5 days. Refrigeration
+          is recommended for longer freshness.
+        </div>
+      </div>
+    </section>
+    <section class="cta-section">
+      <h2>Ready to Order?</h2>
+      <p>Treat yourself or someone special to our delicious homemade sweets</p>
+      <button class="cta-button">Start Your Order</button>
+    </section>
+
     <!-- Call-to-action -->
     <section class="cta-section">
       <h2>Ready to Order?</h2>
@@ -225,5 +291,40 @@
       </ul>
       <small>© 2026 All About Sweets. All rights reserved.</small>
     </footer>
+
+    <script>
+      // login nav bar -- profile icon
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const loginBtn = document.getElementById("loginBtn");
+      const profileBtn = document.getElementById("profileBtn");
+
+      if (user) {
+  // user is logged in
+      loginBtn.style.display = "none";
+      profileBtn.style.display = "block";
+    } else {
+  // not logged in
+      loginBtn.style.display = "block";
+       profileBtn.style.display = "none";
+    }
+
+function goToProfile() {
+  window.location.href = "user-profile.html";
+}
+
+
+      //FAQs js
+            const questions = document.querySelectorAll(".faq-question");
+
+      questions.forEach((question) => {
+        question.addEventListener("click", () => {
+          const answer = question.nextElementSibling;
+          question.classList.toggle("active");
+          answer.classList.toggle("open");
+        });
+      });
+    </script>
+
   </body>
 </html>

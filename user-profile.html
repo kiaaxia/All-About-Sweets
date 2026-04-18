@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Profile</title>
+  <link rel="stylesheet" href="user-edit-profile.css">
+  <link rel="shortcut icon" href="assets/AASlogo.png" type="image/x-icon">
+</head>
+
+<header class="navbar">
+      <div class="logo">
+        <span>All About Sweets</span>
+      </div>
+      <!-- <input type="checkbox" id="menu-toggle" /> -->
+
+      <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#story">Story</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#faq">FAQs</a>
+        <a href="ordernow.html"> 
+        <button class="order-btn">Order Now</button>
+        </a>
+        
+        <a href="login.html" id="loginBtn" class="login">Login</a>
+
+      <img 
+        src="assets/user.png"
+        id="profileBtn"
+        class="profile-icon"
+        onclick="goToProfile()"
+        style="display: none;">
+      </nav>
+    </header>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- LEFT: PROFILE -->
+  <div class="profile-card">
+    <h2>My Profile</h2>
+
+    <img id="profilePic" class="profile-pic" src="https://via.placeholder.com/100">
+
+    <p><b>Name:</b> <span id="name"></span></p>
+    <p><b>Email:</b> <span id="email"></span></p>
+    <p><b>Contact no.:</b> <span id="phone"></span></p>
+
+    <button onclick="editProfile()">Edit Profile</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- RIGHT: ORDERS + ADDRESS -->
+  <div class="right-card">
+
+    <h2>My Orders</h2>
+    <div id="orderList"></div>
+
+    <h3>Address</h3>
+
+    <button onclick="toggleAddressForm()">+ Add Address</button>
+
+    <!-- 🔥 HIDDEN FORM -->
+    <div id="addressForm" class="address-form hidden">
+      <h4>New Address</h4>
+
+      <input type="text" id="addrName" placeholder="Full Name">
+      <input type="text" id="addrPhone" placeholder="Phone Number">
+      <input type="text" id="addrCity" placeholder="City, Barangay">
+      <input type="text" id="addrPostal" placeholder="Postal Code">
+      <input type="text" id="addrStreet" placeholder="Street Name, Building">
+
+      <button onclick="saveAddress()">Save Address</button>
+    </div>
+
+    <!-- ADDRESS LIST -->
+    <div id="addressList"></div>
+
+  </div>
+
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+
+if (!user) window.location.href = "login.html";
+
+// PROFILE
+document.getElementById("name").textContent = user.name || "N/A";
+document.getElementById("email").textContent = user.email;
+document.getElementById("phone").textContent = user.phone || "N/A";
+
+if (user.profilePic) {
+  document.getElementById("profilePic").src = user.profilePic;
+}
+
+// ================= ORDERS =================
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+let orderOutput = "";
+orders.forEach(order => {
+  if (order.name === user.email) {
+    orderOutput += `
+      <div class="card">
+        <p><b>${order.item}</b></p>
+        <p>₱${order.total}</p>
+        <p>${order.status}</p>
+      </div>
+    `;
+  }
+});
+
+document.getElementById("orderList").innerHTML = orderOutput || "No orders yet.";
+
+// ================= ADDRESS =================
+let addresses = JSON.parse(localStorage.getItem("addresses")) || [];
+
+function toggleAddressForm() {
+  document.getElementById("addressForm").classList.toggle("hidden");
+}
+
+function saveAddress() {
+  const newAddr = {
+    email: user.email,
+    name: addrName.value,
+    phone: addrPhone.value,
+    city: addrCity.value,
+    postal: addrPostal.value,
+    street: addrStreet.value
+  };
+
+  addresses.push(newAddr);
+  localStorage.setItem("addresses", JSON.stringify(addresses));
+
+  renderAddresses();
+  toggleAddressForm();
+}
+
+function renderAddresses() {
+  let output = "";
+
+  addresses.forEach((addr, index) => {
+    if (addr.email === user.email) {
+      output += `
+        <div class="card">
+          <p><b>${addr.name}</b></p>
+          <p>${addr.phone}</p>
+          <p>${addr.street}, ${addr.city}</p>
+          <p>${addr.postal}</p>
+
+          <button onclick="deleteAddress(${index})">Delete</button>
+        </div>
+      `;
+    }
+  });
+
+  document.getElementById("addressList").innerHTML = output || "No address yet.";
+}
+
+function deleteAddress(index) {
+  addresses.splice(index, 1);
+  localStorage.setItem("addresses", JSON.stringify(addresses));
+  renderAddresses();
+}
+
+renderAddresses();
+
+function editProfile() {
+  window.location.href = "edit-profile.html";
+}
+
+function logout() {
+  localStorage.removeItem("user");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

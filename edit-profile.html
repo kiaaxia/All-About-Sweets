@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="user-edit-profile.css">
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Edit Profile</h2>
+
+  <img id="preview" class="profile-pic" src="https://via.placeholder.com/100">
+
+  <input type="file" id="upload">
+
+  <input type="text" id="name" placeholder="Name">
+  <input type="text" id="phone" placeholder="Phone">
+  <input type="text" id="address" placeholder="Address">
+
+  <button onclick="saveProfile()">Save</button>
+</div>
+
+<script>
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  document.getElementById("name").value = user.name || "";
+  document.getElementById("phone").value = user.phone || "";
+  document.getElementById("address").value = user.address || "";
+
+  if (user.profilePic) {
+    document.getElementById("preview").src = user.profilePic;
+  }
+
+  // Preview image
+  document.getElementById("upload").addEventListener("change", function() {
+    const file = this.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      document.getElementById("preview").src = e.target.result;
+      user.profilePic = e.target.result;
+    };
+
+    if (file) reader.readAsDataURL(file);
+  });
+
+  function saveProfile() {
+    user.name = document.getElementById("name").value;
+    user.phone = document.getElementById("phone").value;
+    user.address = document.getElementById("address").value;
+
+    localStorage.setItem("user", JSON.stringify(user));
+
+    alert("Profile updated!");
+    window.location.href = "user-profile.html";
+  }
+</script>
+
+</body>
+</html>

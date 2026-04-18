@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Now</title>
     <link rel="stylesheet" href="ordernow.css" />
+      <link rel="shortcut icon" href="assets/AASlogo.png" type="image/x-icon">
   </head>
 
-      <header class="navbar">
+<header class="navbar">
       <div class="logo">
         <span>All About Sweets</span>
       </div>
@@ -21,17 +22,25 @@
       </label>
 
       <nav class="nav-menu">
-        <a href="#" class="active">Home</a>
-        <a href="flavors.html">Flavors</a>
-        <a href="#story">Story</a>
+        <a href="index.html">Home</a>
+        <a href="index.html#story">Story</a>
         <a href="blog.html">Blog</a>
+        <a href="index.html#faq">FAQs</a>
         <a href="ordernow.html"> 
         <button class="order-btn">Order Now</button>
         </a>
         
-        <a href="login.html" class="login">Login</a>
+        <a href="login.html" id="loginBtn" class="login">Login</a>
+
+      <img 
+        src="assets/user.png"
+        id="profileBtn"
+        class="profile-icon"
+        onclick="goToProfile()"
+        style="display: none;">
       </nav>
     </header>
+
 
   <body>
     <h1>Order Now</h1>
@@ -128,6 +137,28 @@
     </div>
 
     <script>
+
+            // login nav bar -- profile icon
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const loginBtn = document.getElementById("loginBtn");
+      const profileBtn = document.getElementById("profileBtn");
+
+      if (user) {
+  // user is logged in
+      loginBtn.style.display = "none";
+      profileBtn.style.display = "block";
+    } else {
+  // not logged in
+      loginBtn.style.display = "block";
+       profileBtn.style.display = "none";
+    }
+
+    function goToProfile() {
+  window.location.href = "user-profile.html";
+  }
+
+
       let names = [];
       let prices = [];
       let quantities = [];

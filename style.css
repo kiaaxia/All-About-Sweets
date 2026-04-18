@@ -4,9 +4,13 @@ html {
 body {
   margin: 0;
   padding-top: 80px;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;;
   background: linear-gradient(to right, #f3e7da, #e6d3b3);
   color: #5a2d0c;
+}
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;;
 }
 
 #menu-toggle {
@@ -41,6 +45,13 @@ body {
   background: #fff;
   border-bottom: 1px solid #ddd;
   z-index: 1000;
+}
+
+.profile-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .logo {

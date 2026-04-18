@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,9 +19,7 @@
         </div>
 
         <p class="error" id="error"></p>
-        <a href="index.html">
-          <button type="submit">Log In</button>
-        </a>
+        <button type="submit">Log In</button>
       </form>
 
       <p class="switch">
@@ -59,4 +57,95 @@
       }
     </script>
   </body>
+ </html> -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h2>Welcome Back</h2>
+    <p class="sub">Log in to place your order</p>
+
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" />
+
+      <div class="password-box">
+        <input type="password" id="password" placeholder="Password" />
+        <span onclick="togglePass()">👁️</span>
+      </div>
+
+      <p class="error" id="error"></p>
+
+   
+      <button type="submit">Log In</button>
+    </form>
+
+    <p class="switch">
+      Don't have an account? <a href="signup.html">Sign up</a>
+    </p>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const errorText = document.getElementById("error");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const pass = document.getElementById("password").value;
+
+      // Clear previous error
+      errorText.textContent = "";
+
+      // Validation
+      if (!email || !pass) {
+        errorText.textContent = "All fields are required!";
+        return;
+      }
+
+      if (pass.length < 8) {
+        errorText.textContent = "Password must be at least 8 characters!";
+        return;
+      }
+
+    
+      const users = [
+        { email: "admin@gmail.com", password: "12345678", role: "admin" },
+        { email: "user@gmail.com", password: "12345678", role: "user" }
+      ];
+
+      const foundUser = users.find(user =>
+        user.email === email && user.password === pass
+      );
+
+      if (!foundUser) {
+        errorText.textContent = "Invalid email or password!";
+        return;
+      }
+
+      // Save session
+      localStorage.setItem("user", JSON.stringify(foundUser));
+
+      // Redirect based on role
+      if (foundUser.role === "admin") {
+        window.location.href = "admin.html";
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+
+    function togglePass() {
+      const pass = document.getElementById("password");
+      pass.type = pass.type === "password" ? "text" : "password";
+    }
+  </script>
+</body>
 </html>

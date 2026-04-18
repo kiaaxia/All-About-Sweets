@@ -20,12 +20,18 @@
 
     <nav class="nav-menu">
       <a href="index.html" class="active">Home</a>
-      <a href="flavors.html">Flavors</a>
       <a href="index.html#story">Story</a>
       <a href="blog.html">Blog</a>
       <button class="order-btn">Order Now</button>
-      <a href="#" class="login">Login</a>
-    </nav>
+        <a href="login.html" id="loginBtn" class="login">Login</a>
+
+      <img 
+        src="assets/user.png"
+        id="profileBtn"
+        class="profile-icon"
+        onclick="goToProfile()"
+        style="display: none;">
+      </nav>
   </header>
   <body>
     <section class="reviews">
@@ -89,7 +95,7 @@
 
       <button onclick="addReview()">Submit</button>
     </section>
-    <section id="faq" class="faq-section">
+    <!-- <section id="faq" class="faq-section">
       <h2>Frequently Asked Questions</h2>
       <p class="subtitle">Everything you need to know</p>
 
@@ -145,7 +151,7 @@
       <h2>Ready to Order?</h2>
       <p>Treat yourself or someone special to our delicious homemade sweets</p>
       <button class="cta-button">Start Your Order</button>
-    </section>
+    </section> -->
 
     <!-- Footer -->
     <footer>
@@ -161,15 +167,15 @@
       <small>© 2026 All About Sweets. All rights reserved.</small>
     </footer>
     <script>
-      const questions = document.querySelectorAll(".faq-question");
+      // const questions = document.querySelectorAll(".faq-question");
 
-      questions.forEach((question) => {
-        question.addEventListener("click", () => {
-          const answer = question.nextElementSibling;
-          question.classList.toggle("active");
-          answer.classList.toggle("open");
-        });
-      });
+      // questions.forEach((question) => {
+      //   question.addEventListener("click", () => {
+      //     const answer = question.nextElementSibling;
+      //     question.classList.toggle("active");
+      //     answer.classList.toggle("open");
+      //   });
+      // });
       let selectedRating = 0;
 
       // ⭐ select stars
