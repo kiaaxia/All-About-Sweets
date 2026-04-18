@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sign Up</title>
+
+<style>
+/* ===== BODY ===== */
+body {
+  background: linear-gradient(to right, #f3e7da, #e6d3b3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  width: 350px;
+  background: #f3f1ee;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #8b4513;
+}
+
+.sub {
+  text-align: center;
+  margin-bottom: 20px;
+  color: gray;
+}
+
+/* ===== INPUT GROUP ===== */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  background: #e6e4e1;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* ===== ERROR STYLE ===== */
+input.error-border,
+textarea.error-border {
+  border: 2px solid red;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  height: 14px;
+}
+
+/* ===== PASSWORD ICON ===== */
+.password-box {
+  position: relative;
+}
+
+.password-box span {
+  position: absolute;
+  right: 10px;
+  top: 32px;
+  cursor: pointer;
+}
+
+/* ===== BUTTON ===== */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #8b4513;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 15px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <h2>Create Account</h2>
+  <p class="sub">Join us to start ordering delicious treats</p>
+
+  <form id="signupForm">
+
+    <div class="input-group">
+      <small class="error" id="nameError"></small>
+      <input type="text" id="name" placeholder="Full Name">
+    </div>
+
+    <div class="input-group">
+      <small class="error" id="emailError"></small>
+      <input type="email" id="email" placeholder="Email">
+    </div>
+
+    <div class="input-group">
+      <small class="error" id="phoneError"></small>
+      <input type="text" id="phone" placeholder="Phone Number">
+    </div>
+
+    <!-- <div class="input-group">
+      <small class="error" id="addressError"></small>
+      <textarea id="address" placeholder="Address"></textarea>
+    </div> -->
+
+    <div class="input-group password-box">
+      <small class="error" id="passwordError"></small>
+      <input type="password" id="password" placeholder="Password">
+      <!-- <span onclick="togglePass()">👁️</span> -->
+    </div>
+
+    <div class="input-group">
+      <small class="error" id="confirmError"></small>
+      <input type="password" id="confirm" placeholder="Confirm Password">
+    </div>
+
+    <button type="submit">Create Account</button>
+  </form>
+
+  <p class="switch">
+    Already have an account? <a href="login.html">Log in</a>
+  </p>
+</div>
+
+<script>
+const form = document.getElementById("signupForm");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const phone = document.getElementById("phone");
+  
+  const pass = document.getElementById("password");
+  const confirm = document.getElementById("confirm");
+
+  const nameError = document.getElementById("nameError");
+  const emailError = document.getElementById("emailError");
+  const phoneError = document.getElementById("phoneError");
+
+  const passwordError = document.getElementById("passwordError");
+  const confirmError = document.getElementById("confirmError");
+
+  let valid = true;
+
+  // RESET
+  document.querySelectorAll("input, textarea").forEach(el => {
+    el.classList.remove("error-border");
+  });
+
+  document.querySelectorAll(".error").forEach(el => {
+    el.textContent = "";
+  });
+
+  // VALIDATIONS
+  if(name.value.trim() === ""){
+    name.classList.add("error-border");
+    nameError.textContent = "Full name is required";
+    valid = false;
+  }
+
+  if(email.value.trim() === ""){
+    email.classList.add("error-border");
+    emailError.textContent = "Email is required";
+    valid = false;
+  }
+
+  if(phone.value.trim() === ""){
+    phone.classList.add("error-border");
+    phoneError.textContent = "Phone number is required";
+    valid = false;
+  }
+
+  if(address.value.trim() === ""){
+    address.classList.add("error-border");
+    addressError.textContent = "Address is required";
+    valid = false;
+  }
+
+  if(pass.value === ""){
+    pass.classList.add("error-border");
+    passwordError.textContent = "Password is required";
+    valid = false;
+  } else if(pass.value.length < 8){
+    pass.classList.add("error-border");
+    passwordError.textContent = "At least 8 characters";
+    valid = false;
+  }
+
+  if(confirm.value === ""){
+    confirm.classList.add("error-border");
+    confirmError.textContent = "Confirm your password";
+    valid = false;
+  } else if(pass.value !== confirm.value){
+    confirm.classList.add("error-border");
+    confirmError.textContent = "Passwords do not match";
+    valid = false;
+  }
+
+  if(valid){
+    alert("Signup successful!");
+  }
+});
+
+// SHOW/HIDE PASSWORD
+function togglePass(){
+  const pass = document.getElementById("password");
+  pass.type = pass.type === "password" ? "text" : "password";
+}
+
+// REAL-TIME PASSWORD MATCH
+document.getElementById("confirm").addEventListener("input", () => {
+  const pass = document.getElementById("password").value;
+  const confirm = document.getElementById("confirm");
+  const confirmError = document.getElementById("confirmError");
+
+  if(confirm.value !== pass){
+    confirm.classList.add("error-border");
+    confirmError.textContent = "Passwords do not match";
+  } else {
+    confirm.classList.remove("error-border");
+    confirmError.textContent = "";
+  }
+});
+</script>
+
+</body>
+</html>
